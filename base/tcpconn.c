@@ -48,6 +48,7 @@ static char *RCSSTRING="$Id: tcpconn.c,v 1.7 2002/08/17 01:33:16 ekr Exp $";
 #include "network.h"
 #include "tcpconn.h"
 
+#include <netdb.h>
 
 typedef struct conn_struct_ {
      tcp_conn conn;
@@ -106,8 +107,18 @@ int tcp_find_conn(connp,directionp,saddr,sport,daddr,dport)
 
 void tcp_dump_conn(tcp_conn *conn)
 {
+    char buf[40];
+    struct hostent *he;
     printf("*** tcp_conn entry ***\n");
     printf("conn_number: %d\n",conn->conn_number);
+    inet_ntop(AF_INET, &conn->i_addr, &buf, sizeof(buf));
+    printf("i_addr: %s\n", buf);
+    printf("i_port: %d\n",conn->i_port);
+    inet_ntop(AF_INET, &conn->r_addr, &buf, sizeof(buf));
+    printf("r_addr: %s\n", buf);
+    printf("r_port: %d\n", conn->r_port);
+    printf("State: %d\n",conn->state);
+    printf("*** end dump ***\n");
 }
 
 int tcp_create_conn(connp,i_addr,i_port,r_addr,r_port)
