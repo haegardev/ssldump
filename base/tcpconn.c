@@ -172,7 +172,10 @@ int tcp_destroy_conn(conn)
     else {
       first_conn=c->next;
     }
-    
+    #ifdef DEBUG
+    printf("Destroy the following connection\n");
+    tcp_dump_conn(conn);
+    #endif
     destroy_proto_handler(&conn->analyzer);
     free_tcp_segment_queue(conn->i2r.oo_queue);
     free_tcp_segment_queue(conn->r2i.oo_queue);
