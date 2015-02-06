@@ -104,6 +104,12 @@ int tcp_find_conn(connp,directionp,saddr,sport,daddr,dport)
     return(R_NOT_FOUND);
   }
 
+void tcp_dump_conn(tcp_conn *conn)
+{
+    printf("*** tcp_conn entry ***\n");
+    printf("conn_number: %d\n",conn->conn_number);
+}
+
 int tcp_create_conn(connp,i_addr,i_port,r_addr,r_port)
   tcp_conn **connp;
   struct in_addr *i_addr;
