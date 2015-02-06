@@ -151,7 +151,9 @@ int tcp_create_conn(connp,i_addr,i_port,r_addr,r_port)
       first_conn->prev=conn;
     first_conn=conn;
 
-    
+    #ifdef DEBUG
+    tcp_dump_conn(&first_conn->conn);
+    #endif
     return(0);
   }
 
