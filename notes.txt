@@ -1,0 +1,8 @@
+In order to dump the certificates the openssl library should not be used
+
+./configure with-openssl=/non_existing_directory
+
+To dump the certificates from pcap file
+
+./ssldump -ANn -n -r ../captures/ssl.cap 
+
