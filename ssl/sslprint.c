@@ -408,7 +408,15 @@ int ssl_print_enum(ssl,name,dtable,value)
   {
     if(name) explain(ssl,"%s ",name);    
     INDENT;
-    
+
+    /* When encountering application data the certificates should have been
+     * previously exchanged. Hence, the queues of tcp packets could be
+     * stopped and the emptied in case of dumping metadata.
+     */
+    if (value == 23 ) {
+        // TODO set state variable to indicate to stop recording
+    }
+
     while(dtable && dtable->type!=-1){
       if(dtable->type == value){
         INDENT_INCR;
