@@ -226,7 +226,9 @@ static int process_data_segment(conn,handler,p,stream,direction)
     long l;
 
     l=p->len - p->tcp->th_off * 4;
-    
+
+    //TODO Reject also packets if  the certificates were dumped if this
+    //option is configured
     if(stream->close){
       DBG((0,"Rejecting packet received after FIN: %u:%u(%u)",
              ntohl(p->tcp->th_seq),ntohl(p->tcp->th_seq+l),l));
