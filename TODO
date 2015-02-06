@@ -1,0 +1,3 @@
+* Add command line switch to free memory after the certificates were dumped
+* Test 4 tuple collisions for tcp connections
+* Expire long lasting flows
